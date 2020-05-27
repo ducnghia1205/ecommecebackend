@@ -2,8 +2,6 @@ const express = require('express');
 const middlewareResponse = require('../middleware/response');
 const userController = require('../app/user/controller');
 const userRoute = require('../app/user/route');
-const hotelRoute = require('../app/hotel/route');
-const bookingRoute = require('../app/booking/route');
 
 
 module.exports = (app) => {
@@ -17,8 +15,6 @@ module.exports = (app) => {
   middlewareResponse(app);
 
   userRoute(apiRoutes);
-  hotelRoute(apiAuthRoutes);
-  bookingRoute(apiAuthRoutes);
 
 
   app.use('/', apiRoutes);
