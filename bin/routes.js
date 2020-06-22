@@ -1,10 +1,13 @@
 const express = require('express');
 const middlewareResponse = require('../middleware/response');
-const userController = require('../app/user/controller');
-const userRoute = require('../app/user/route');
+const userController = require('../admin/user/controller');
+const userRoute = require('../admin/user/route');
+const hotelRouteApi = require('../api/v1/hotel/route');
+const hotelRouteAdmin = require('../admin/hotel/route');
 
 
 module.exports = (app) => {
+  const appRoutes = express.Router();
   const apiRoutes = express.Router();
   const apiAuthRoutes = express.Router();
 
@@ -14,9 +17,16 @@ module.exports = (app) => {
 
   middlewareResponse(app);
 
-  userRoute(apiRoutes);
+  //app route
+  userRoute(appRoutes);
 
+  // api route
+  hotelRouteApi(apiRoutes);
 
-  app.use('/', apiRoutes);
-  app.use('/api', [userController.validateLogin], apiAuthRoutes);
+  // admin route
+  hotelRouteAdmin(apiAuthRoutes);
+
+  app.use('/', appRoutes);
+  app.use('/api/v1', apiRoutes);
+  app.use('/admin', [userController.validateLogin], apiAuthRoutes);
 };

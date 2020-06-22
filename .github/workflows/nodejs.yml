@@ -19,16 +19,15 @@ jobs:
         node-version: [10.x]
 
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
             # install your project dependencies
-      - name: install dependencies
-        run: npm install
-
-      - name: run the test
-        run: npm run test
+      - name: npm install, build and test
+        run: |
+          npm install
+          npm test
 
 

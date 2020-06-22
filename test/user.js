@@ -1,6 +1,6 @@
 const chai = require('chai');
 const assert = require('assert');
-const UserModel = require('../app/user/model');
+const UserModel = require('../models/user');
 const chaiHttp = require('chai-http');
 const server = require('../bin');
 const expect = chai.expect;

@@ -9,7 +9,7 @@ const process = require('process');
 const morgan = require('morgan');
 
 
-console.log('Starting app at:', process.cwd());
+console.log('Starting admin at:', process.cwd());
 console.log('Environment:', process.env.NODE_ENV);
 console.log('Server is listening on port:', process.env.PORT);
 
@@ -82,7 +82,7 @@ process.on('SIGINT', haveToExitHandler.bind(null, { exitType: 'SIGINT' }));
 // Catches uncaught exceptions
 process.on('uncaughtException', haveToExitHandler.bind(null, { exitType: 'uncaughtException' }));
 
-// Do something when app is closing
+// Do something when admin is closing
 process.on('exit', beforeExitHandler.bind(null, { clean: true }));
 
 function haveToExitHandler (options, err) {
