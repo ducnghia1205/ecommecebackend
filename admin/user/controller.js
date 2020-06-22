@@ -1,4 +1,4 @@
-const UserModel = require('./model');
+const UserModel = require('../../models/user');
 const tokenHelper = require('../../helper/authen');
 const utility = require('../../helper/utility');
 

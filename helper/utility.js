@@ -56,4 +56,18 @@ let self = module.exports = {
     str = str.replace(/d/gi, '[DĐ]');
     return str;
   },
+  buildFullTextSearchObj: function (params, fieldsToFullTextSearch = [], isInsensitiveCase = false) {
+    let tmp = { ...params };
+    if (fieldsToFullTextSearch.length === 0) {
+      return tmp;
+    }
+    fieldsToFullTextSearch.forEach((field) => {
+      let value = tmp[field];
+      if (value) {
+        let regex = isInsensitiveCase ? new RegExp(value, 'i') : new RegExp(this.fullTextSearch(value), 'i');
+        tmp[field] = { $regex: regex };
+      }
+    });
+    return tmp;
+  },
 };
