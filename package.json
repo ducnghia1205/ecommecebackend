@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node ./bin/index.js",
     "dev": "./node_modules/.bin/nodemon ./bin/index.js",
-    "test": "mocha"
+    "test": "mocha ./test/example.test.js --timeout 300000"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
