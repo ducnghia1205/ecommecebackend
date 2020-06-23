@@ -1,6 +1,4 @@
 const chai = require('chai');
-const assert = require('assert');
-const UserModel = require('../models/user');
 const chaiHttp = require('chai-http');
 const server = require('../bin');
 const expect = chai.expect;
@@ -11,9 +9,9 @@ module.exports = function () {
   it('/POST  /user/register with User', (done) => {
     let userFake = {
       name: 'nghia',
-      userName: 'duclut1',
+      userName: 'hoang2',
       password: 'TEST',
-      email: 'ahihi1@gmail.com',
+      email: 'ahihi3@gmail.com',
     };
     chai.request(server)
       .post('/user/register')
@@ -30,9 +28,5 @@ module.exports = function () {
         res.body.data.should.have.property('email').eql(userFake.email);
         done();
       });
-  });
-  it('Unit Testshould return 9', (done) => {
-    expect(3*3).to.equal(9);
-    done()
   });
 };

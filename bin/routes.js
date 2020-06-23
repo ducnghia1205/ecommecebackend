@@ -4,6 +4,7 @@ const userController = require('../admin/user/controller');
 const userRoute = require('../admin/user/route');
 const hotelRouteApi = require('../api/v1/hotel/route');
 const hotelRouteAdmin = require('../admin/hotel/route');
+const bookingRouteAdmin = require('../admin/booking/route');
 
 
 module.exports = (app) => {
@@ -25,6 +26,7 @@ module.exports = (app) => {
 
   // admin route
   hotelRouteAdmin(apiAuthRoutes);
+  bookingRouteAdmin(apiAuthRoutes);
 
   app.use('/', appRoutes);
   app.use('/api/v1', apiRoutes);
