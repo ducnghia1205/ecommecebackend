@@ -23,11 +23,11 @@ module.exports = {
         return res.error('Please login your account.');
       }
 
-      let account = await UserModel.findById(decoded._id);
+      let account = await UserModel.findOne({_id: decoded._id});
       if (!account) {
         return res.error('Token are invalid.');
       }
-      req.adminAccount = { ...account, isTokenExpired: decoded.isTokenExpired || false };
+      req.adminAccount = account;
       return next();
     } catch (error) {
       next(error);

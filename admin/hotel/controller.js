@@ -16,9 +16,12 @@ module.exports = {
         params = utility.buildFullTextSearchObj(params,['name']);
       }
 
-      const data = await HotelModel.find(params).sort({createdAt: -1}).limit(option.limit).skip(option.offset);
+      const data = await Promise.all([
+        HotelModel.find(params).sort({createdAt: -1}).limit(option.limit).skip(option.offset),
+        HotelModel.countDocuments(params)
+      ]);
 
-      return res.success(data)
+      return res.success({hotels: data, total: count, page: option.page, limit: option.limit})
     } catch (e) {
       console.log('catch ERR: ', e);
       return res.error(e, 500);
